@@ -60,4 +60,5 @@ public class Stick implements Comparable {
         if (stick.getX() < this.getX()) return 1;
         return 0;
     }
+    
 }
