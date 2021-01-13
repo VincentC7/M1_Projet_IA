@@ -29,14 +29,19 @@ public  class Tree {
 		return lines;
 	}
 	
+	// Parcours de toutes les lignes,
 	public boolean is_leaf() {
 
+		boolean notFound = true;
 		ArrayList<Integer> groups1;
 		ArrayList<Integer> groups2;
 		for (int i = 0; i < lines.size(); i++) {
 			for (int j = 0; j < lines.get(i).length; j++) {
 				if(lines.get(i)[j].getState()) {
-					return false;
+					if (notFound==false) {
+						return false;
+					}
+					notFound = false ;
 				}
 
 			}
