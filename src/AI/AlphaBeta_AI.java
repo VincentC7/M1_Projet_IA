@@ -20,7 +20,7 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
         int value = alpha_beta(root,INFINIT,MINUS_INFINIT);
         Stick[] choice;
         if (value == -1){
-            choice = root.get_choice();
+            choice = root.get_choice(); // Sticks à selectionner
         }else{
             choice = root.first();
         }
