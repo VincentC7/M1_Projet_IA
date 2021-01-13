@@ -8,13 +8,29 @@ import data_structure.Stick;
 
 //Noeud de l'arbre
 public class Node extends Tree {
-	
 	Tree father;
 	public Node (ArrayList<Stick[]> lines, Tree father, int depth) {
 		this.lines = lines;
 		this.father = father;
 		this.depth = depth;
+		this.valeur=0;
 		System.out.println(this.depth);
+	}
+	
+	public boolean is_min_node() {
+		if (this.depth%2==0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean is_max_node() {
+		if (this.depth%2==0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public boolean equals (Node node) {

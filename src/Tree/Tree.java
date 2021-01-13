@@ -9,7 +9,8 @@ import data_structure.Stick;
 public  class Tree {
 	
 	public int depth = 0;
-	
+	public int valeur = 0;
+
 	// Fils du noeud
 	public ArrayList<Node> sons = new ArrayList<Node>();
 			// Lignes du jeu
@@ -88,11 +89,35 @@ public  class Tree {
 			}
 			sons.forEach(son -> son.generateSons());
 		} else {
+			// C'est une feuille, le joueur qui se retrouve face à une feuille a gagné puisque c'est le joueur d'avant qui a du cocher le dernier
+			if(this.depth%2==0) {
+				this.valeur=1;	
+			} else {
+				// joueur victoire
+				this.valeur=-1;	
+			}
+			
+
 			System.out.println("#####################################################################################");
 		}
 		
 		
 	}
+	
+	
+	public void set_value(int valeur) {
+		this.valeur=valeur;
+	}
+	
+	public boolean win() {
+		if(this.valeur==-1) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	
 	
 	// On cherche dans tout le jeu en cours le plus gros paquet (on retourne le premier recontré en cas d'égalité(s))
 	public Stick[] getBiggestPacket(){

@@ -25,6 +25,11 @@ public class Main extends Application {
 	    r.generateSons();
 		System.out.println("fin du main bitchies");
 		
+		// appel aplha beta contrcut
+		// genere arbre
+		// attribut neoud ia joué
+		
+		
 		
 
 //		for (int i = 0; i < r.lines.size(); i++) {
