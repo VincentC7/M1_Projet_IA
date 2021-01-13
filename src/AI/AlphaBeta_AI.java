@@ -1,6 +1,7 @@
 package AI;
 
 import Tree.Node;
+import Tree.Root;
 import Tree.Tree;
 import data_structure.Game;
 import data_structure.Stick;
@@ -20,6 +21,36 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
         //Création de l'arbre
         //tree = ....
     }
+    
+    public Stick[] get_choice(Game game) {
+    	// Générer un arbre avec l'état du jeu actuel
+    	ArrayList<Stick[]> cloned = game.getLines();
+    	ArrayList<Stick[]> gameToia;
+    	Node n = new Node(game.getLines(), new Root(), 0);
+    	n.generateSons();
+    	
+    	// trouver un jeu à faire qui rapporte 1 (exécuter alpha_beta)
+    	
+    	// trouver les batons à cocher dans le vrai jeu
+    	
+    	// je regarde sa première ligne
+//    	je prends son index 0
+    	// je sais quen ça correspond au baton isolé du premier niveau
+    	
+    	
+
+// index0 : I
+// index1 : III
+// index2 : I III I getindexof(baton)
+// index3 : IIIIIII
+    	
+    	
+    	
+    	// entre x1 et x2 : 30
+    	// entre x1 et x1 il y a 55 en partant de 254
+    	
+    	
+    }
 
     @Override
     public void play() {
@@ -27,7 +58,7 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
         Node root; //Récupérer le bon noeud via player_selection
         int value = alpha_beta(root,INFINIT,MINUS_INFINIT);
         Stick[] choice;
-        if (value == -1){
+        if (value == 1){
             choice = root.get_choice(); // Sticks à selectionner
         }else{
             choice = root.first();
@@ -67,4 +98,18 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
             return val;
         }
     }
+    
+    public Stick[] get_choice() {
+    	
+    	// on a un node
+    	
+    	// on regarde chaque fils jusqu'à trouver une valeur 1
+    	
+    	// on compare la différence entre fils et père
+    	
+    	// c'est le tableau de baton à jouer
+    	
+    	
+    }
+    
 }

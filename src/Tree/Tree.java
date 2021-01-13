@@ -7,7 +7,6 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 import data_structure.Stick;
 
 public  class Tree {
-	
 	public int depth = 0;
 	public int valeur = 0;
 
@@ -23,6 +22,9 @@ public  class Tree {
 			    return clone;
 			}			
 			
+	public Node first() {
+		return this.sons.get(0);
+	}
 			
 			
 	// Chaque noeud et racine génèrent leurs propres fils
@@ -122,6 +124,7 @@ public  class Tree {
 	// On cherche dans tout le jeu en cours le plus gros paquet (on retourne le premier recontré en cas d'égalité(s))
 	public Stick[] getBiggestPacket(){
 		System.out.println("getBiggestPacket");
+
 			// Dans l'array list, en index 0 on a le plus grand paquet de la ligne 0, ect ect 
 			ArrayList<Stick> biggestPacket = new ArrayList<Stick>();
 			ArrayList<Stick> temp = new ArrayList<Stick>();
@@ -179,7 +182,7 @@ public  class Tree {
 				System.out.println(newSon.get(i)[j]);
 				}
 			}
-		for(int i = 0; i<modifyMe.length; i ++ ) {
+		for(int i = 1; i<modifyMe.length; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
 		}

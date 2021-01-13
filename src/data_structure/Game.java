@@ -19,6 +19,9 @@ public class Game {
      * Joueur en train de jouer
      */
     private int current_player;
+    
+    
+    
 
     /**
      * Choix du joueur par exemple si J1 veut faire X = [1,3]
@@ -26,6 +29,7 @@ public class Game {
      */
     private ArrayList<int[]> current_selection;
     private ArrayList<int[]> last_selection;
+    private ArrayList<int[]> player_selection;
 
     private AI artificial_intelligence;
 
@@ -168,6 +172,11 @@ public class Game {
     }
 
     private void lock_selection(){
+    	// Si le joueur humain jour alors on mémorise son tour
+    	if (current_player == 1) {
+        	player_selection=current_selection;
+
+    	}
         for (int[] coord : current_selection) {
             Stick stick = lines.get(coord[0])[coord[1]];
             stick.lock();
@@ -196,7 +205,7 @@ public class Game {
                 return current_player = current_player == 1 ? 2 : 1;
             }
         }else{
-            System.out.println("tu ne respect pas les règles");
+            System.out.println("Tu ne respectes pas les règles");
             return -1;
         }
     }

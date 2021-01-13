@@ -9,6 +9,7 @@ import data_structure.Stick;
 //Noeud de l'arbre
 public class Node extends Tree {
 	Tree father;
+	Stick[] lastPlayed;
 	public Node (ArrayList<Stick[]> lines, Tree father, int depth) {
 		this.lines = lines;
 		this.father = father;
