@@ -1,5 +1,6 @@
 package AI;
 
+import data_structure.Game;
 import data_structure.Stick;
 
 import java.util.ArrayList;
@@ -7,13 +8,14 @@ import java.util.ArrayList;
 public class Random_AI extends Abstract_AI implements AI{
 
 
-    public Random_AI(ArrayList<Stick[]> game) {
+    public Random_AI(Game game) {
         super(game);
     }
 
     @Override
     public void play() {
         System.out.println("Choix IA====================");
+        ArrayList<Stick[]> lines = game.getLines();
         int height_game = lines.size();
         ArrayList<ArrayList<Stick>> pack;
         do{
@@ -39,6 +41,7 @@ public class Random_AI extends Abstract_AI implements AI{
      */
     protected ArrayList<ArrayList<Stick>> playable_sticks_on_line(int line_index){
         ArrayList<ArrayList<Stick>> res = new ArrayList<>();
+        ArrayList<Stick[]> lines = game.getLines();
         Stick[] line = lines.get(line_index);
         ArrayList<Stick> pack = new ArrayList<>();
         res.add(pack);

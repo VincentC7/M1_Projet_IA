@@ -25,6 +25,7 @@ public class Game {
      * dans cette variable il y aura [[1,n],[1,n+1],[n+2]]
      */
     private ArrayList<int[]> current_selection;
+    private ArrayList<int[]> last_selection;
 
     private AI artificial_intelligence;
 
@@ -35,15 +36,15 @@ public class Game {
             lines.add(new Stick[i*2+1]);
         }
         current_selection = new ArrayList<>();
-        switch (gameplay){
+        switch (gameplay) {
             case "Contre un joueur":
                 artificial_intelligence = null;
                 break;
             case "Contre IA : Aléatoire":
-                artificial_intelligence = new Random_AI(lines);
+                artificial_intelligence = new Random_AI(this);
                 break;
             case "Contre IA : AlphaBeta":
-                artificial_intelligence = new AlphaBeta_AI(lines);
+                artificial_intelligence = new AlphaBeta_AI(this);
                 break;
         }
     }
@@ -136,7 +137,7 @@ public class Game {
 
     private boolean verifSelection(int p_line, int p_colomn) {
         if (lines.get(p_line)[p_colomn].getState()) return false;
-        if (current_selection.isEmpty()){
+        if (current_selection.isEmpty()) {
             current_selection.add(new int[]{p_line, p_colomn});
             return true;
         }
@@ -185,6 +186,7 @@ public class Game {
         if (verifValidation()){
             lock_selection();
             System.out.println(this);
+            last_selection = new ArrayList<>(current_selection);
             current_selection = new ArrayList<>();
             if (artificial_intelligence != null){
                 artificial_intelligence.play();
@@ -199,7 +201,7 @@ public class Game {
         }
     }
 
-    public void set_AI(){
-
+    public ArrayList<int[]> getLast_selection(){
+        return last_selection;
     }
 }

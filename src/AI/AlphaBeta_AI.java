@@ -1,6 +1,8 @@
 package AI;
 
 import Tree.Node;
+import Tree.Tree;
+import data_structure.Game;
 import data_structure.Stick;
 
 import java.util.ArrayList;
@@ -10,13 +12,19 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
     private static final int INFINIT = Integer.MAX_VALUE;
     private static final int MINUS_INFINIT = Integer.MIN_VALUE;
 
-    public AlphaBeta_AI(ArrayList<Stick[]> game) {
+    private Node last_node_played;
+    private Tree tree;
+
+    public AlphaBeta_AI(Game game) {
         super(game);
+        //Création de l'arbre
+        //tree = ....
     }
 
     @Override
     public void play() {
-        Node root;
+        ArrayList<int[]> player_selection = game.getLast_selection();
+        Node root; //Récupérer le bon noeud via player_selection
         int value = alpha_beta(root,INFINIT,MINUS_INFINIT);
         Stick[] choice;
         if (value == -1){
@@ -28,7 +36,7 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
             stick.setPlayer(2);
             stick.lock();
         }
-
+        last_node_played = root;
     }
 
     private int alpha_beta(Node node, int alpha, int beta){
