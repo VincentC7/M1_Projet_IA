@@ -181,7 +181,7 @@ public class Game {
         current_player = player;
     }
 
-    public int change_player() {
+	public int change_player() {
         if (verifValidation()){
             lock_selection();
             System.out.println(this);

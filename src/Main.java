@@ -19,8 +19,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-       launch(args);
-   // Root r = new Root();   
-    
+       //launch(args);
+	    Root r = new Root();   
+	    System.out.println("Apocalypse");
+	    r.generateSons();
+		System.out.println("fin du main bitchies");
     }
 }

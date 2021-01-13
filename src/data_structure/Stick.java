@@ -61,4 +61,10 @@ public class Stick implements Comparable {
         return 0;
     }
     
+    public Stick clone () {
+    	return new Stick(x, y, x2, y2);
+    }
+    
+    
+    
 }
