@@ -10,9 +10,11 @@ import data_structure.Stick;
 public class Node extends Tree {
 	
 	Tree father;
-	public Node (ArrayList<Stick[]> lines, Tree father) {
+	public Node (ArrayList<Stick[]> lines, Tree father, int depth) {
 		this.lines = lines;
 		this.father = father;
+		this.depth = depth;
+		System.out.println(this.depth);
 	}
 	
 	public boolean equals (Node node) {

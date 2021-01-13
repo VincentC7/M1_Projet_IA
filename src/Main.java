@@ -24,5 +24,26 @@ public class Main extends Application {
 	    System.out.println("Apocalypse");
 	    r.generateSons();
 		System.out.println("fin du main bitchies");
+		
+		
+
+//		for (int i = 0; i < r.lines.size(); i++) {
+//			for (int j = 0; j < r.lines.get(i).length; j++) {
+//				System.out.println(r.lines.get(i)[j]);
+//				}
+//			}
+//		
+//		for (int i = 0; i < r.sons.size(); i++) {
+//			for (int j = 0; j < r.sons.get(i).getLines().size(); j++) {
+//				for (int k = 0; k < r.sons.get(i).getLines().get(j).length; k++) {
+//					System.out.println(r.sons.get(i).getLines().get(j)[k]);
+//				}
+//				
+//			}
+//			System.out.println("################# fin état de jeu ################");
+//		}
+		
+		
+		
     }
 }

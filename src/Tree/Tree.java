@@ -8,13 +8,25 @@ import data_structure.Stick;
 
 public  class Tree {
 	
+	public int depth = 0;
+	
 	// Fils du noeud
-			ArrayList<Node> sons = new ArrayList<Node>();
+	public ArrayList<Node> sons = new ArrayList<Node>();
 			// Lignes du jeu
-			ArrayList<Stick[]> lines = new ArrayList<Stick[]>();
+			public ArrayList<Stick[]> lines = new ArrayList<Stick[]>();
 
+			
+			public static ArrayList<Stick[]> cloneArrayList(ArrayList<Stick[]> list) {
+				ArrayList<Stick[]> clone = new ArrayList<Stick[]>(list.size());
+			    for (Stick[] item : list) clone.add(item.clone());
+			    return clone;
+			}			
+			
+			
+			
 	// Chaque noeud et racine génèrent leurs propres fils
 	public void generateSons() {
+		
 		System.out.println("début generateSons");
 		
 		if (!this.is_leaf()) {		
@@ -59,7 +71,7 @@ public  class Tree {
 			default:
 				System.out.println("Case défaut");
 				System.out.println(bande.length);
-
+				
 				leaveNone(bande);
 				System.out.println("fin de none");
 				leaveUnique(bande);		
@@ -122,63 +134,133 @@ public  class Tree {
 	// On barre tout
 	public void leaveNone(Stick[] modifyMe) {
 		System.out.println("Début de leaveNone");
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
+		for(int p =0; p < modifyMe.length ; p++) {
+			System.out.println(modifyMe[p]);
 
+		}
+		System.out.println("maintenant on va modifier");
+
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
+
+		
+		
+		
+		System.out.println("clone avant modif");
+
+		for (int i = 0; i < newSon.size(); i++) {
+			for (int j = 0; j < newSon.get(i).length; j++) {
+				System.out.println(newSon.get(i)[j]);
+				}
+			}
 		for(int i = 0; i<modifyMe.length; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
 		}
+		
+		
+		System.out.println("clone APR7S modif");
+		for (int i = 0; i < newSon.size(); i++) {
+			for (int j = 0; j < newSon.get(i).length; j++) {
+				System.out.println(newSon.get(i)[j]);
+				}
+			}
+		
 	//	System.out.println("Vérification de duplication");
 	//	if (!searchRoot().searchSameNode(this)) {
 	//		System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 	//	} else {
 	//		System.out.println("noeud déjà existant");
 		//}
 		
-		
-		
+		System.out.println("fin de leave non in function");
 	}
 	
 	// On barre tout sauf le premier bâton du groupe
 	public void leaveUnique(Stick[] modifyMe) {
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
+		System.out.println("Début de leaveUnique");
+		for(int p =0; p < modifyMe.length ; p++) {
+			System.out.println(modifyMe[p]);
+
+		}
+		System.out.println("maintenant on va modifier");
+
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
+		System.out.println("clone avant modif");
+
+		for (int i = 0; i < newSon.size(); i++) {
+			for (int j = 0; j < newSon.get(i).length; j++) {
+				System.out.println(newSon.get(i)[j]);
+				}
+			}
 		for(int i = 1; i<modifyMe.length; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
 		}
+		
+		
+		System.out.println("clone APR7S modif");
+		for (int i = 0; i < newSon.size(); i++) {
+			for (int j = 0; j < newSon.get(i).length; j++) {
+				System.out.println(newSon.get(i)[j]);
+				}
+			}
+		
 	//	System.out.println("Vérification de duplication");
 	//	if (!searchRoot().searchSameNode(this)) {
 	//		System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 	//	} else {
-		//	System.out.println("noeud déjà existant");
+	//		System.out.println("noeud déjà existant");
 		//}
-		
-			
+			System.out.println("fin de leaveUnique");
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// On laisse les extrémités isolées
 	public void leaveTwoUnique(Stick[] modifyMe) {
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
-		for(int i = 1; i<modifyMe.length-1; i ++ ) {
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
+		 for(int i = 1; i<modifyMe.length-1; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
 		}
 	//	System.out.println("Vérification de duplication");
 	//	if (!searchRoot().searchSameNode(this)) {
 	//		System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 		//} else {
 		//	System.out.println("noeud déjà existant");
 		//}
 	}
 	
 	public void leavueOneGroup(Stick[] modifyMe) {
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
 		for(int i = 2; i<modifyMe.length; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
@@ -186,7 +268,7 @@ public  class Tree {
 	//	System.out.println("Vérification de duplication");
 	//	if (!searchRoot().searchSameNode(this)) {
 		//	System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 		//} else {
 		//	System.out.println("noeud déjà existant");
 		//}		
@@ -194,8 +276,9 @@ public  class Tree {
 	}
 	
 	public void leavueUniqueAndGroup(Stick[] modifyMe) {
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
 		for(int i = 2; i<modifyMe.length-1; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
@@ -203,15 +286,16 @@ public  class Tree {
 		//System.out.println("Vérification de duplication");
 		//if (!searchRoot().searchSameNode(this)) {
 		//	System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 		//} else {
 		//	System.out.println("noeud déjà existant");
 		//}
 	}
 		
 	public void leaveTwoGroups(Stick[] modifyMe) {
-		ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
-		newSon = (ArrayList<Stick[]>) lines.clone();
+		//ArrayList<Stick[]> newSon = new ArrayList<Stick[]>();
+		//newSon = (ArrayList<Stick[]>) lines.clone();
+		 ArrayList<Stick[]> newSon = cloneArrayList(lines);
 		for(int i = 2; i<modifyMe.length-2; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
@@ -219,7 +303,7 @@ public  class Tree {
 		System.out.println("Vérification de duplication");
 		//if (!searchRoot().searchSameNode(this)) {
 			//System.out.println("Nouveau noeud trouvé!");
-			sons.add(new Node(newSon, this));
+			sons.add(new Node(newSon, this, this.depth+1));
 		//} else {
 			//System.out.println("noeud déjà existant");
 		//}
@@ -254,6 +338,9 @@ public  class Tree {
 				}
 			}
 		}
+
+
+		
 		return true;
 	}
 
