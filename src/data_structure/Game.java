@@ -6,7 +6,7 @@ import java.util.Comparator;
 import AI.AI;
 import GUI.GUI;
 import AI.Random_AI;
-import AI.AlphaBeta_AI;
+import AI.Alpha_beta_AI;
 
 public class Game {
 
@@ -48,9 +48,21 @@ public class Game {
                 artificial_intelligence = new Random_AI(this);
                 break;
             case "Contre IA : AlphaBeta":
-                artificial_intelligence = new AlphaBeta_AI(this);
+                artificial_intelligence = new Alpha_beta_AI(this);
                 break;
         }
+    }
+
+    public String build_string_game(){
+        StringBuilder res = new StringBuilder();
+        for (Stick[] line : lines) {
+            for (Stick stick : line) {
+                res.append(stick.getState() ? "1" : "0");
+            }
+            res.append(";");
+        }
+        res.setLength(res.length() - 1);
+        return res.toString();
     }
 
     /**
@@ -87,6 +99,14 @@ public class Game {
 
     public ArrayList<Stick[]> getLines() {
         return lines;
+    }
+
+    public void apply_choice(int line_index, int start, int end){
+        Stick[] line = lines.get(line_index-1);
+        for (int i = start; i <= end; i++) {
+            line[i].setPlayer(2);
+            line[i].lock();
+        }
     }
 
     public int height(){
