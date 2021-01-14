@@ -25,6 +25,8 @@ public class Main extends Application {
 	    r.generateSons();
 		System.out.println("fin du main bitchies");
 		
+		
+		
 		// appel aplha beta contrcut
 		// genere arbre
 		// attribut neoud ia joué

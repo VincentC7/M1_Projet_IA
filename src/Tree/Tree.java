@@ -30,7 +30,7 @@ public  class Tree {
 	// Chaque noeud et racine génèrent leurs propres fils
 	public void generateSons() {
 		
-		System.out.println("début generateSons");
+		//System.out.println("début generateSons");
 		
 		if (!this.is_leaf()) {		
 			// on génère tout l'arbre
@@ -98,12 +98,8 @@ public  class Tree {
 				// joueur victoire
 				this.valeur=-1;	
 			}
-			
-
 			System.out.println("#####################################################################################");
 		}
-		
-		
 	}
 	
 	
@@ -123,8 +119,7 @@ public  class Tree {
 	
 	// On cherche dans tout le jeu en cours le plus gros paquet (on retourne le premier recontré en cas d'égalité(s))
 	public Stick[] getBiggestPacket(){
-		System.out.println("getBiggestPacket");
-
+		//System.out.println("getBiggestPacket");
 			// Dans l'array list, en index 0 on a le plus grand paquet de la ligne 0, ect ect 
 			ArrayList<Stick> biggestPacket = new ArrayList<Stick>();
 			ArrayList<Stick> temp = new ArrayList<Stick>();
@@ -164,7 +159,6 @@ public  class Tree {
 		System.out.println("Début de leaveNone");
 		for(int p =0; p < modifyMe.length ; p++) {
 			System.out.println(modifyMe[p]);
-
 		}
 		System.out.println("maintenant on va modifier");
 
@@ -174,7 +168,6 @@ public  class Tree {
 
 		
 		
-		
 		System.out.println("clone avant modif");
 
 		for (int i = 0; i < newSon.size(); i++) {
@@ -182,7 +175,7 @@ public  class Tree {
 				System.out.println(newSon.get(i)[j]);
 				}
 			}
-		for(int i = 1; i<modifyMe.length; i ++ ) {
+		for(int i = 0; i<modifyMe.length; i ++ ) {
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()] = modifyMe[i].clone();
 			newSon.get(modifyMe[i].getY())[modifyMe[i].getX()].lock();
 		}
@@ -206,12 +199,17 @@ public  class Tree {
 		System.out.println("fin de leave non in function");
 	}
 	
+	
+	
+	
+	
+	
+	
 	// On barre tout sauf le premier bâton du groupe
 	public void leaveUnique(Stick[] modifyMe) {
 		System.out.println("Début de leaveUnique");
 		for(int p =0; p < modifyMe.length ; p++) {
 			System.out.println(modifyMe[p]);
-
 		}
 		System.out.println("maintenant on va modifier");
 
@@ -246,6 +244,7 @@ public  class Tree {
 	//		System.out.println("noeud déjà existant");
 		//}
 			System.out.println("fin de leaveUnique");
+
 	}
 	
 	

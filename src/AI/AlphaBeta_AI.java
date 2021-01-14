@@ -28,6 +28,7 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
     	ArrayList<Stick[]> gameToia;
     	Node n = new Node(game.getLines(), new Root(), 0);
     	n.generateSons();
+		return null;
     	
     	// trouver un jeu à faire qui rapporte 1 (exécuter alpha_beta)
     	
@@ -43,6 +44,8 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
 // index1 : III
 // index2 : I III I getindexof(baton)
 // index3 : IIIIIII
+    	
+    	
     	
     	
     	
@@ -100,6 +103,7 @@ public class AlphaBeta_AI extends Abstract_AI implements AI{
     }
     
     public Stick[] get_choice() {
+		return null;
     	
     	// on a un node
     	
