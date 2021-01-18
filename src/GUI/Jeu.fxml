@@ -26,10 +26,11 @@
                <String fx:value="Contre un joueur" />
                <String fx:value="Contre IA : Aléatoire" />
                <String fx:value="Contre IA : AlphaBeta" />
+               <String fx:value="Contre IA : Pragmatique" />
             </FXCollections>
          </items>
          <value>
-            <String fx:value="Contre IA : AlphaBeta" />
+            <String fx:value="Contre IA : Pragmatique" />
          </value>
       </ComboBox>
    </children>

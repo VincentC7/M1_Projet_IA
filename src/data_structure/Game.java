@@ -7,6 +7,7 @@ import AI.AI;
 import GUI.GUI;
 import AI.Random_AI;
 import AI.Alpha_beta_AI;
+import AI.Pragmatic_AI;
 
 public class Game {
 
@@ -49,6 +50,8 @@ public class Game {
                 break;
             case "Contre IA : AlphaBeta":
                 artificial_intelligence = new Alpha_beta_AI(this);
+            case "Contre IA : Pragmatique":
+                artificial_intelligence = new Pragmatic_AI(this);
                 break;
         }
     }
