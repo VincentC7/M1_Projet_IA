@@ -22,12 +22,17 @@ public class GUI implements Initializable {
     public static final int STICK_MARGE_Y = 10;
     private static final Color STICK_COLOR_P1 = Color.RED;
     private static final Color STICK_COLOR_P2 = Color.BLUE;
+    private static final Color STICK_COLOR_P0 = Color.BLACK;
 
 
     public Canvas canvas;
     public Label label_current_player;
     public Button btn_validate;
     public ComboBox<String> ia_selector;
+    public Button btn_play;
+    public Button btn_make;
+    public Button btn_replay;
+    private boolean is_making = false;
 
     private Game game;
 
@@ -54,7 +59,7 @@ public class GUI implements Initializable {
         for (Stick[] line : game.getLines()) {
             for (Stick stick : line) {
                 int skick_player = stick.getPlayer();
-                Color c = !stick.getState() && skick_player == -1  ? Color.GRAY : skick_player == 1 ? STICK_COLOR_P1 : STICK_COLOR_P2;
+                Color c = !stick.getState() && skick_player == -1  ? Color.GRAY : skick_player == 0 ? STICK_COLOR_P0 : skick_player == 1 ? STICK_COLOR_P1 : STICK_COLOR_P2;
                 draw_stick(stick.getX(),stick.getY(),c);
             }
         }
@@ -74,7 +79,7 @@ public class GUI implements Initializable {
     public void canva_click(MouseEvent mouseEvent) {
         int x = (int) mouseEvent.getX();
         int y = (int) mouseEvent.getY();
-        game.click(x,y);
+        game.click(x,y,is_making);
         draw_sticks();
     }
 
@@ -89,11 +94,30 @@ public class GUI implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Résultat");
             alert.setHeaderText("Gagnant de la partie :");
-            alert.setContentText("Le joueur " + current_player + " a gagné");
+            if (game.is_against_AI() && current_player == player) {
+                alert.setContentText("L'IA a gagné");
+            }else{
+                alert.setContentText("Le joueur " + current_player + " a gagné");
+            }
 
             alert.showAndWait();
             btn_validate.setDisable(true);
         }
     }
 
+    public void create(ActionEvent actionEvent) {
+        is_making = true;
+        btn_validate.setDisable(true);
+        btn_replay.setVisible(false);
+        btn_play.setVisible(true);
+    }
+
+    public void start_game(ActionEvent actionEvent) {
+        if (is_making){
+            btn_play.setVisible(false);
+            is_making = false;
+            btn_validate.setDisable(false);
+            btn_replay.setVisible(true);
+        }
+    }
 }

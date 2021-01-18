@@ -147,15 +147,20 @@ public class Game {
         return res.append("}").toString();
     }
 
-    public void click(int x, int y){
+    public void click(int x, int y, boolean making_game){
         for (int i = 0; i < lines.size(); i++) {
             Stick[] line = lines.get(i);
             for (int j = 0; j < line.length; j++) {
                 if (line[j].is_click_inside(x,y)){
-                    if (verifSelection(i,j)) {
-                        line[j].setPlayer(current_player);
-                    } else {
-                        System.out.println("Tu peux pas faire ça");
+                    if (making_game){
+                        line[j].setPlayer(0);
+                        line[j].lock();
+                    }else {
+                        if (verifSelection(i,j)) {
+                            line[j].setPlayer(current_player);
+                        } else {
+                            System.out.println("Tu peux pas faire ça");
+                        }
                     }
                 }
             }
@@ -235,5 +240,9 @@ public class Game {
 
     public ArrayList<int[]> getLast_selection(){
         return last_selection;
+    }
+
+    public boolean is_against_AI(){
+        return artificial_intelligence != null;
     }
 }

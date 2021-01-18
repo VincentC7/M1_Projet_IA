@@ -30,23 +30,30 @@ public class Pragmatic_AI extends Abstract_AI implements AI{
             }
         } else if (pack_count == 2) {
             //Faire en sorte de garder 2 pack
-            if (single_stick_count > 0) {
+            int pack_len = Integer.parseInt(choice[0]);
+            if (pack_len > 2){
+                //Joue 4
+                int max = Integer.parseInt(choice[3]);
+                action = action.substring(0,action.length() - 1) + (max-2);
+            }else if (single_stick_count > 0) {
                 action = packs.get(packs.size()-1);
-            } else {
-                int pack_len = Integer.parseInt(choice[0]);
-                if (pack_len > 2){
-                    //Joue 4
-                    int max = Integer.parseInt(choice[3]);
-                    action = action.substring(0,action.length() - 1) + (max-2);
-                }//else c'est lose
             }
         } else if (pack_count > 2) {
             int pack_len = Integer.parseInt(choice[0]);
             int max = Integer.parseInt(choice[3]);
             int min = Integer.parseInt(choice[2]);
-            if (pack_len > 3) action = action.substring(0,action.length() - 3) + ((max+min)/2) + ";" +((max+min)/2);
+            if (pack_count%2 == 1) {
+                //Joue 5
+                action = action.substring(0,action.length() - 3) + ((max+min)/2) + ";" +((max+min)/2);
+            } else if (pack_len >= 3){
+                //Joue 4
+                action = action.substring(0,action.length() - 1) + (max-2);
+            }else{
+                action = packs.get(packs.size()-1);
+            }
         }
         String[] final_choice = action.split(";");
+        System.out.println(action);
         this.game.apply_choice(Integer.parseInt(final_choice[1]),Integer.parseInt(final_choice[2]),Integer.parseInt(final_choice[3]));
     }
 
